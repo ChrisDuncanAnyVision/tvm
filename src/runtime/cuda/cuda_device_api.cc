@@ -132,6 +132,7 @@ class CUDADeviceAPI final : public DeviceAPI {
     } else {
       CUDA_CALL(cudaSetDevice(dev.device_id));
       VLOG(1) << "freeing device memory";
+      printf("Hello World!\n");
       CUDA_CALL(cudaFree(ptr));
     }
   }
