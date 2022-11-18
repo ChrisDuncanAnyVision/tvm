@@ -30,6 +30,8 @@
 
 #include <cstring>
 
+#include <iostream>
+
 #include "cuda_common.h"
 
 namespace tvm {
@@ -126,17 +128,17 @@ class CUDADeviceAPI final : public DeviceAPI {
   }
 
   void FreeDataSpace(Device dev, void* ptr) final {
-    printf("FreeDataSpace()\n");
+    std::cerr << "FreeDataSpace()\n";
     if (dev.device_type == kDLCUDAHost) {
       VLOG(1) << "freeing host memory";
       CUDA_CALL(cudaFreeHost(ptr));
     } else {
-      printf("Dunx & Chester: device id - %i\n", dev.device_id);
+      std::cerr << "Dunx & Chester: device id - " << dev.device_id << "\n";
       CUDA_CALL(cudaSetDevice(dev.device_id));
       VLOG(1) << "freeing device memory";
       CUDA_CALL(cudaFree(ptr));
       CUDA_CALL(cudaDeviceSynchronize());
-      printf("Post-free message\n");
+      std::cerr << "Post-free message\n";
     }
   }
 
