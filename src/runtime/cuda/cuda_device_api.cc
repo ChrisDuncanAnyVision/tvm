@@ -30,8 +30,6 @@
 
 #include <cstring>
 
-#include <unistd.h>
-
 #include "cuda_common.h"
 
 namespace tvm {
@@ -133,7 +131,6 @@ class CUDADeviceAPI final : public DeviceAPI {
       CUDA_CALL(cudaFreeHost(ptr));
     } else {
       printf("Dunx & Chester: device id - %i\n", dev.device_id);
-      sleep(1);
       CUDA_CALL(cudaSetDevice(dev.device_id));
       VLOG(1) << "freeing device memory";
       CUDA_CALL(cudaFree(ptr));
