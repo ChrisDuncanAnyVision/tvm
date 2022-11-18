@@ -135,6 +135,11 @@ class CUDADeviceAPI final : public DeviceAPI {
     } else {
       std::cerr << "Dunx & Chester: device id - " << dev.device_id << "\n";
       CUDA_CALL(cudaSetDevice(dev.device_id));
+
+      cudaPointerAttributes attributes;
+
+      CUDA_CALL(cudaPointerGetAttributes(&attributes, ptr));
+      std::cerr << "CUDA ptr attr device: " << attributes.device << "\n";
       VLOG(1) << "freeing device memory";
       CUDA_CALL(cudaFree(ptr));
       CUDA_CALL(cudaDeviceSynchronize());
