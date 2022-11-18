@@ -30,6 +30,8 @@
 
 #include <cstring>
 
+#include <unistd.h>
+
 #include "cuda_common.h"
 
 namespace tvm {
