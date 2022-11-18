@@ -131,6 +131,7 @@ class CUDADeviceAPI final : public DeviceAPI {
       CUDA_CALL(cudaFreeHost(ptr));
     } else {
       printf("Dunx: device id - %i", dev.device_id);
+      sleep(1);
       CUDA_CALL(cudaSetDevice(dev.device_id));
       VLOG(1) << "freeing device memory";
       CUDA_CALL(cudaFree(ptr));
