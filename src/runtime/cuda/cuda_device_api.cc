@@ -134,6 +134,7 @@ class CUDADeviceAPI final : public DeviceAPI {
       CUDA_CALL(cudaSetDevice(dev.device_id));
       VLOG(1) << "freeing device memory";
       CUDA_CALL(cudaFree(ptr));
+      CUDA_CALL(cudaDeviceSynchronize(dev.device_id));
       printf("Post-free message\n");
     }
   }
