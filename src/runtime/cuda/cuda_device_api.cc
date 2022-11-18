@@ -140,6 +140,7 @@ class CUDADeviceAPI final : public DeviceAPI {
 
       CUDA_CALL(cudaPointerGetAttributes(&attributes, ptr));
       std::cerr << "CUDA ptr attr device: " << attributes.device << "\n";
+      std::cerr << "CUDA ptr: " << ptr << "\n";
       VLOG(1) << "freeing device memory";
       CUDA_CALL(cudaFree(ptr));
       CUDA_CALL(cudaDeviceSynchronize());
